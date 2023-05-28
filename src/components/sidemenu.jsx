@@ -88,7 +88,7 @@ const SideMenu = (props) => {
         method: "GET", // or 'PUT'
         headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://marketnow-backend2.onrender.com",
+        "Access-Control-Allow-Origin": "*",
         "Authorization": "Bearer " + token,
         },
       });
