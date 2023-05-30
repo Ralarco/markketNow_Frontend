@@ -7,22 +7,12 @@ import "../css/estilos.css"
 import ContextUser from '../contextUsuario';
 
 
-const Container = styled.div`
-  
-  display: flex;
-  height: 130vh;
-  flex-wrap: wrap;
-  margin-top: 88px;
-  padding-bottom: 80px;
-  
-`;
 const TopContainer = styled.div`
   display: flex;
-  width: 39%;
+  width: 90%;
   align-items: center;
-  margin-left: 95px;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 25px;
 `;
 const Titulo = styled.h1`
     font-size: 40px;
@@ -61,7 +51,8 @@ const ProductosFavoritos = () => {
 
 
   return (
-    <Container>
+    <div className="Container_Perfil"
+    >
       <TopContainer>
       <Titulo>
         MIS FAVORITOS
@@ -73,8 +64,7 @@ const ProductosFavoritos = () => {
           <ProductoFavorito item={item} key={item.productoid}/>
         ))}
       </div>
-      
-    </Container>
+    </div>
   );
 };
 

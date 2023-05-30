@@ -1,63 +1,25 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Anuncios from "../components/Anuncios";
 import NavbarVPrivada from "../components/NavbarVPrivada";
 import Footer from "../components/Footer";
 import SideMenu from "../components/sidemenu";
 import TextField from "@mui/material/TextField";
-import { Button, Container } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { Button, Container, Box} from "@mui/material";
+import ContextUser from '../contextUsuario';
+import { useNavigate } from "react-router-dom";
 
-const Left = styled.div`
-  margin-bottom: 32px;
-  margin-left: 130px;
-  display: flex;
-`;
-const Titulo = styled.h1`
-  font-size: 40px;
-  font-weight: normal;
-`;
-const ContainerAddProducto = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 60%;
-  height: 70%;
-  background-color: white;
-  border-top-right-radius: 40px;
-  border-bottom-left-radius: 40px;
-  margin-left: 130px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
-const ContainerTop = styled.div`
-  display: flex;
-  align-items: stretch;
-`;
-const ContainerImage = styled.div`
-  display: flex;
-  width: 250px;
-  height: 250px;
-  background-color: black;
-  z-index: 1;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  margin: 20px;
-  justify-content: center;
-  align-items: center;
-`;
-const PreClick = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  font-size: 20px;
-`;
 const ContainerTextField = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  width: 400px;
+  height:auto;
+  margin-left: 150px;
+  margin-right: 150px;
+  justify-content: flex-start;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  flex: 1; 
+  align-self: stretch; 
 `;
 const CustomTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -78,12 +40,16 @@ const CustomTextField = styled(TextField)({
     },
   },
 });
+const TextoImagen = styled.div`
+  margin-bottom: 10px
+  `;
+
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
 `;
 const CustomButton = styled(Button)`
   && {
@@ -105,23 +71,89 @@ const FooterContainer = styled.div`
   z-index: 2;
 `;
 const Agregarproducto = () => {
+
+  const navigate = useNavigate()
+  const {usuario, setUsuario} = useContext(ContextUser)
+  const [nombre, setNombre] = useState("");
+  const [precio, setPrecio] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const [imagen, setImagen] = useState("")
+
+  const cargarImagen = async (e) => {
+    const file = e.target.files[0]
+    const base64 = await convertBase64(file)
+    setImagen(base64)
+    console.log(base64)
+  }
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(file)
+
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error)
+      };
+
+    });
+  }
+
+  const registrarProducto = async () => {
+
+    const datos = usuario[0].usuarioid
+
+    const producto = {
+      nombre: nombre,
+      precio: precio,
+      descripcion: descripcion,
+      imagen: imagen,
+      usuarioid: datos,
+    };
+
+    const productotemporal = JSON.stringify(producto);
+    try {
+      const response = await fetch("https://marketnow-backend2.onrender.com/producto", {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(producto),
+      });
+
+      const result = await response;
+      const token = await response.text();
+
+      if (result.ok) {
+
+        navigate("/tienda");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <div>
       <Anuncios />
       <NavbarVPrivada />
-      <Container disableGutters maxWidth={false} sx={{display: 'flex', flexDirection: 'row', width: '100%', margin: 0, padding: 0, gap: 7}}>
+      <Container disableGutters maxWidth={false} sx={{display: 'flex', flexDirection: 'row', width: '100%', height: 'auto', minHeight: '70vh', margin: 0, padding: 0, gap: 7}}>
         <SideMenu />
-        <Left>
-          <Titulo>AGREGA TUS PRODUCTOS</Titulo>
-        </Left>
-        <ContainerAddProducto>
-          <ContainerTop>
-            <ContainerImage>
-              <PreClick>
-                Añadir imagen
-                <AddIcon/>
-              </PreClick>
-            </ContainerImage>
+        <div className="Container_Perfil">
+        <div className='titulo'>AGREGAR PRODUCTO</div>
+        <Box sx={{
+          bgcolor: "background.paper",
+          boxShadow: 1,
+          minWidth: 300,
+          minHeight: 300,
+          width: "90%",
+          height: "auto",
+          borderTopRightRadius: 40,
+          borderBottomLeftRadius: 40,
+        }}>
             <ContainerTextField>
               <CustomTextField
                 autoComplete="given-name"
@@ -132,7 +164,9 @@ const Agregarproducto = () => {
                 label="Nombre del producto"
                 autoFocus
                 size="small"
-                sx={{ marginBottom: 2 }}
+                value={nombre}
+                onChange={({ target }) => setNombre(target.value)}
+                sx={{ marginBottom: 1 }}
               />
               <CustomTextField
                 name="Precio"
@@ -142,7 +176,9 @@ const Agregarproducto = () => {
                 label="Precio"
                 autoFocus
                 size="small"
-                sx={{ marginBottom: 2 }}
+                value={precio}
+                onChange={({ target }) => setPrecio(target.value)}
+                sx={{ marginBottom: 1 }}
               />
               <CustomTextField
                 name="Descripción del producto"
@@ -154,17 +190,22 @@ const Agregarproducto = () => {
                 label="Descripción del producto"
                 autoFocus
                 size="small"
-                sx={{ marginBottom: 3 }}
-              />
+                value={descripcion}
+                onChange={({ target }) => setDescripcion(target.value)}
+                sx={{ marginBottom: 1 }}
+              />   
+              <TextoImagen>Agrega la imagen de tu producto</TextoImagen>
+              <input name="archivo" type="file" onChange={(e) => cargarImagen(e)}/>           
               <ButtonContainer>
-                <CustomButton variant="contained" size="small" color="primary">
+                <CustomButton variant="contained" size="small" color="primary" onClick={registrarProducto}>
                   Agregar producto
                 </CustomButton>
               </ButtonContainer>
             </ContainerTextField>
-          </ContainerTop>
-        </ContainerAddProducto>
+        </Box> 
+        </div>
       </Container>
+      
       <FooterContainer>
         <Footer />
       </FooterContainer>

@@ -25,6 +25,7 @@ const CustomButton = styled(Button)`
         background-color: #77D0CF;
         color: black;
         border-radius: 20px;
+        margin-bottom: 60px;
         text-transform: capitalize;
         padding-left: 20px;
         padding-right: 20px;
@@ -41,6 +42,7 @@ const ButtonContainer = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    margin-bottom: 80px;
     
     
 `;
@@ -95,7 +97,6 @@ const SideMenu = (props) => {
   
       let result = await response.json();
       setUsuario(result);
-      console.log(result)
     } catch ({ response: { data: message } }) {
       alert(message + " 🙁");
       console.log(message);
@@ -108,11 +109,11 @@ const SideMenu = (props) => {
 
   const drawer = (
     
-      <Box sx={{ width: '100%', maxWidth: 360, minWidth: 200, height: '100vh',  bgcolor: 'background.paper', marginLeft: 0,}}>
-      <Box p={5} style={{ color: 'black' }}>  
-        <p>Bienvenid@ </p>
+      <Box sx={{ width: '100%', maxWidth: 360, minWidth: 200, height: '100vh',  bgcolor: 'background.paper', marginLeft: 0, display: 'flex', flexDirection: 'column', }}>
+      <Box p={5} style={{ color: 'black', display: 'flex' }}>  
+        <p style={{ marginRight: '5px' }}>Bienvenid@, </p>
         {usuario.map(user =>
-        <strong key={user.usuarioid}>{user.nombre}</strong>
+        <strong key= { user.usuarioid}>{user.nombre}</strong>
         )}
       </Box>
       <Divider/>
