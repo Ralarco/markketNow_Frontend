@@ -41,7 +41,7 @@ const ProductosMios = () => {
       },
     });
 
-    const resultado = await response.json();
+    const resultado = await response.text();
     setProductosmios(resultado)
   }
 
