@@ -32,7 +32,6 @@ const ProductosMios = () => {
   const traerProductosmios = async () => {
 
     const datos = usuario[0].usuarioid
-    console.log(datos)
 
     const response = await fetch(`https://marketnow-backend2.onrender.com/productos/${datos}`, {
       method: "GET", // or 'PUT'
@@ -41,7 +40,10 @@ const ProductosMios = () => {
       },
     });
 
-    const resultado = await response.text();
+    const contentType = response.headers.get('Content-Type');
+    console.log(contentType)
+
+    const resultado = await response.json();
     setProductosmios(resultado)
   }
 
