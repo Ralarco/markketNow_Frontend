@@ -124,7 +124,7 @@ const verProducto = `/detalleproductomio/${prodId}`
     const response = await fetch(`https://marketnow-backend2.onrender.com/producto/${productoid}`, {
     method: "DELETE", // or 'PUT'
     headers: {
-        "Content-Type": "application/json",
+        "Accept": "application/json",
     },
     });
 
