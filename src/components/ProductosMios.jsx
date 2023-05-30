@@ -40,8 +40,10 @@ const ProductosMios = () => {
       },
     });
 
+    JSON.stringify(response)
     const contentType = response.headers.get('Content-Type');
     console.log(contentType)
+    console.log(response)
 
     const resultado = await response.json();
     setProductosmios(resultado)
