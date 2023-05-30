@@ -6,21 +6,12 @@ import "../css/estilos.css"
 import ContextUser from '../contextUsuario';
 
 
-const Container = styled.div`
-  
-  display: flex;
-  height: 130vh;
-  flex-wrap: wrap;
-  margin-top: 88px;
-  padding-bottom: 80px;
-  
-`;
 const TopContainer = styled.div`
   display: flex;
   width: 90%;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 33px;
+  margin-bottom: 25px;
 `;
 const Titulo = styled.h1`
     font-size: 40px;
@@ -41,6 +32,7 @@ const ProductosMios = () => {
   const traerProductosmios = async () => {
 
     const datos = usuario[0].usuarioid
+    console.log(datos)
 
     const response = await fetch(`https://marketnow-backend2.onrender.com/productos/${datos}`, {
       method: "GET", // or 'PUT'
