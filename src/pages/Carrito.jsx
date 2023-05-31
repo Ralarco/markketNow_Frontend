@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Anuncios from "../components/Anuncios";
 import NavbarVPrivada from "../components/NavbarVPrivada";
 import Footer from "../components/Footer";
 import SideMenu from "../components/sidemenu";
 import { Container, Box, Typography, Button } from "@mui/material";
-
 import ItemCarro from "../components/item_carro";
 import { useNavigate } from "react-router-dom";
-
 import ContextCarrito from "../contextCarrito";
 import ContextUser from '../contextUsuario';
-import { useContext } from "react";
 
 
 const BottomContainer = styled.div`
@@ -80,7 +77,7 @@ const Carrito = () => {
           "Content-Type": "application/json",
         },
 
-        body: {compraPrevia},
+        body: JSON.stringify(compraPrevia),
         
       });
       console.log(compraPrevia)
@@ -90,7 +87,7 @@ const Carrito = () => {
       if (result.ok) {
         alert("Su compra ha sido registrada éxitosamente 😀");
         navigate(`/compras`)
-        setCarrito([])
+        setCarrito()
         /* carrito.length = 0; */
       }
     } catch (error) {
@@ -144,7 +141,6 @@ const Carrito = () => {
 
             <BottomContainer>
               <Typography variant="h6" fontWeight={"bold"}>
-                {console.log(total)}
                 Total: { precioTotal === 0 ? "$ 0" : totalFormato }
               </Typography>
               <ButtonContainer>
