@@ -31,6 +31,7 @@ const MisComprasComponent = () => {
       method: "GET", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
       },
     });
 

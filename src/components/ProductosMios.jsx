@@ -32,7 +32,7 @@ const ProductosMios = () => {
   const traerProductosmios = async () => {
 
     const datos = usuario[0].usuarioid
-    console.log(datos)
+    
 
     const response = await fetch(`https://marketnow-backend2.onrender.com/productos/${datos}`, {
       method: "GET", // or 'PUT'
@@ -41,7 +41,7 @@ const ProductosMios = () => {
       "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
       },
     });
-
+    console.log(response)
     
 
     const resultado = await response.json();
