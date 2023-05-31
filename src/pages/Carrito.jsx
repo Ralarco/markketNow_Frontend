@@ -77,8 +77,9 @@ const Carrito = () => {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
+
         },
+
         body: JSON.stringify(compraPrevia),
       });
 

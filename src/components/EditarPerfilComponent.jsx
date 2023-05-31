@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { useState, useContext, useEffect} from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/estilos.css";
 import styled from "styled-components";
@@ -55,11 +55,6 @@ const EditarPerfilComponent = () => {
   const [editarPassword, setEditarPassword] = useState("");
 
 
-  useEffect(() => {
-    setEditarNombre(usuario[0].nombre)
-    setEditarDireccion(usuario[0].direccion)
-  });
-
   const editarUsuario = async () => {
 
     const datos = usuario[0].usuarioid
@@ -104,6 +99,7 @@ const EditarPerfilComponent = () => {
           <Grid container spacing={1.5}>
             <Grid item xs={12} sm={6}>
               <CustomTextField
+                required
                 autoComplete="given-name"
                 name="nombre"
                 fullWidth
@@ -119,7 +115,7 @@ const EditarPerfilComponent = () => {
               <CustomTextField
                 fullWidth
                 id="email"
-                label="Email al ser tu Usuario no puede ser cambiado"
+                label="Email (al ser tu Usuario no puede ser cambiado)"
                 name="email"
                 autoComplete="email"
                 value={usuario[0].email}
@@ -128,6 +124,7 @@ const EditarPerfilComponent = () => {
             </Grid>
             <Grid item xs={12}>
               <CustomTextField
+                required               
                 fullWidth
                 id="direccion"
                 label={usuario[0].direccion}
@@ -152,11 +149,11 @@ const EditarPerfilComponent = () => {
               />
             </Grid>
           </Grid>
-          <Grid item xs={4} sx={{ display: "flex", justifyContent: "center", margin:3 }} >
+          <Grid item xs={4} sx={{ display: "flex", justifyContent: "center", margin:1 }} >
           <CustomButton
             fullWidth
             variant="contained"
-            sx={{ mt: 4, mb: 2 }}
+            sx={{ mt: 2, mb: 2 }}
             onClick={editarUsuario}
           >
             Guardar cambios
