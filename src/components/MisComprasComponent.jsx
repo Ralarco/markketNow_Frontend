@@ -1,7 +1,5 @@
 import React from 'react'
-import styled from 'styled-components';
-import { Button, Box } from '@mui/material';
-import { Link } from "react-router-dom"
+import { Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import ContextCarrito from "../contextCarrito";
 import ContextUser from '../contextUsuario';

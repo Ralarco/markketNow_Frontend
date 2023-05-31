@@ -122,8 +122,8 @@ const verProducto = `/detalleproductomio/${prodId}`
       mode: 'no-cors',
       method: "DELETE", // or 'PUT'
       headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
+        "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
+        "Content-Type": "application/json",  
     },
     });
 

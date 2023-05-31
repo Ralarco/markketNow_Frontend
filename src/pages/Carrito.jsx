@@ -82,6 +82,7 @@ const Carrito = () => {
       });
 
       const result = await response;
+      console.log(result)
       
 
       if (result.ok) {

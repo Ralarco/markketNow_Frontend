@@ -40,11 +40,8 @@ const ProductosMios = () => {
         "Content-Type": "application/json",
       },
     });
-    
-    
 
     const resultado = await response.json();
-    console.log(resultado)
     setProductosmios(resultado)
   }
 
