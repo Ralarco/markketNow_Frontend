@@ -60,35 +60,34 @@ const Carrito = () => {
 
     const tiempoTranscurrido = Date.now();
     const hoy = new Date(tiempoTranscurrido);
-    /* const carritoJson = JSON.stringify(carrito); */
+    const carritoJson = JSON.stringify(carrito);
 
     const compraPrevia = {
       usuarioid: usuario[0].usuarioid,
       fecha_compra: hoy.toLocaleDateString(),
       total: total,
-      productos: JSON.stringify(carrito),
+      productos: carritoJson,
     };
 
     try {
       const response = await fetch("https://marketnow-backend2.onrender.com/compras", {
         method: "POST", // or 'PUT'
         headers: {
-          "Access-Control-Allow-Origin": "onrender.com",
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
 
         body: JSON.stringify(compraPrevia),
         
       });
-      console.log(JSON.stringify(compraPrevia))
-      const result = response;
+
+      const result = await response;
       
 
       if (result.ok) {
         alert("Su compra ha sido registrada éxitosamente 😀");
         navigate(`/compras`)
-        setCarrito()
-        /* carrito.length = 0; */
+        carrito.length = 0;
       }
     } catch (error) {
       console.error("Error:", error);
