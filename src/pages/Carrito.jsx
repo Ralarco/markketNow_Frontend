@@ -48,7 +48,7 @@ const FooterContainer = styled.div`
 
 const Carrito = () => {
   
-  const { carrito, total } = useContext(ContextCarrito);
+  const { carrito, setCarrito, total } = useContext(ContextCarrito);
   const {usuario, setUsuario} = useContext(ContextUser)
   const navigate = useNavigate();
   const volver = () => navigate(`/tienda`);
@@ -80,7 +80,7 @@ const Carrito = () => {
           "Content-Type": "application/json",
         },
 
-        /* body: JSON.stringify(compraPrevia), */
+        body: JSON.stringify(compraPrevia),
       });
 
       const result = response;
@@ -88,6 +88,7 @@ const Carrito = () => {
       if (result.ok) {
         alert("Su compra ha sido registrada éxitosamente 😀");
         navigate(`/compras`)
+        setCarrito([])
         carrito.length = 0;
       }
     } catch (error) {
