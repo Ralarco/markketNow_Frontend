@@ -11,8 +11,8 @@ import ItemMisCompras from './ItemMisCompras';
 
 const MisComprasComponent = () => {
 
-  const { carrito, total } = useContext(ContextCarrito)
-  const {usuario, setUsuario} = useContext(ContextUser)
+  const { total } = useContext(ContextCarrito)
+  const {usuario} = useContext(ContextUser)
   const [compras, setCompras] = useState([])
   const navigate = useNavigate()
   const volver = () => navigate(`/tienda`);
@@ -25,6 +25,7 @@ const MisComprasComponent = () => {
   });
 
   const datos = usuario[0].usuarioid
+  console.log(usuario)
 
   const traerCompras = async () => {
     const response = await fetch(`https://marketnow-backend2.onrender.com/compras/${datos}`, {
@@ -32,10 +33,9 @@ const MisComprasComponent = () => {
       headers: {
         "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
         "Content-Type": "application/json",
-        
       },
     });
-
+    console.log(response)
     const resultado = await response.json();
     setCompras(resultado); //
   };
