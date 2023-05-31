@@ -80,7 +80,7 @@ const Carrito = () => {
         body: JSON.stringify(compraPrevia),
         
       });
-      console.log(compraPrevia)
+      console.log(JSON.stringify(compraPrevia))
       const result = response;
       
 
