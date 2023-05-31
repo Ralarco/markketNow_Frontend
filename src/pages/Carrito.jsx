@@ -68,7 +68,7 @@ const Carrito = () => {
       total: total,
       productos: JSON.stringify(carrito),
     };
-
+   console.log(compraPrevia)
     try {
       const response = await fetch("https://marketnow-backend2.onrender.com/compras", {
         method: "POST", // or 'PUT'
