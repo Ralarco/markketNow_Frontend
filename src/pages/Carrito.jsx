@@ -81,14 +81,14 @@ const Carrito = () => {
         
       });
 
-      const result = await response;
+      const result = await response.json();
       console.log(compraPrevia)
       
 
       if (result.ok) {
         alert("Su compra ha sido registrada éxitosamente 😀");
         navigate(`/compras`)
-        carrito.length = 0;
+        carrito.splice(0, carrito.length)
       }
     } catch (error) {
       console.error("Error:", error);
