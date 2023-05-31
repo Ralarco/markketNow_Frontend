@@ -72,7 +72,7 @@ const Carrito = () => {
     try {
       const response = await fetch("https://marketnow-backend2.onrender.com/compras", {
         method: "POST", // or 'PUT'
-        mode: "no-cors",
+        /* mode: "no-cors", */
         headers: {
           "Access-Control-Allow-Origin": "https://marketnow.onrender.com/",
           "Content-Type": "application/json",
