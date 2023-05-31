@@ -65,12 +65,12 @@ const Carrito = () => {
     const hoy = new Date(tiempoTranscurrido);
     const carritoJson = JSON.stringify(carrito);
 
-    const compraPrevia = {
+    const compraPrevia = [{
       usuarioid: usuario[0].usuarioid,
       fecha_compra: hoy.toLocaleDateString(),
       total: total,
       productos: carritoJson,
-    };
+    }];
 
     try {
       const response = await fetch("https://marketnow-backend2.onrender.com/compras", {
@@ -80,7 +80,7 @@ const Carrito = () => {
           "Content-Type": "application/json",
         },
 
-        body: compraPrevia,
+        /* body: JSON.stringify(compraPrevia), */
       });
 
       const result = response;
