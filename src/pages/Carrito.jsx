@@ -81,7 +81,7 @@ const Carrito = () => {
         
       });
 
-      const result = response;
+      const result = await response.json();
       console.log(response)
       
 

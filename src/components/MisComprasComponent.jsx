@@ -32,9 +32,9 @@ const MisComprasComponent = () => {
         "Content-Type": "application/json",
       },
     });
-    console.log(response)
     const resultado = await response.json();
     setCompras(resultado); //
+    console.log(resultado)
   };
 
   useEffect(() => {
