@@ -66,14 +66,14 @@ const Carrito = () => {
       usuarioid: usuario[0].usuarioid,
       fecha_compra: hoy.toLocaleDateString(),
       total: total,
-      productos: carritoJson,
+      productos: carrito,
     };
 
     try {
       const response = await fetch("https://marketnow-backend2.onrender.com/compras", {
         method: "POST", // or 'PUT'
         headers: {
-          "Access-Control-Allow-Origin": "https://marketnow-backend2.onrender.com",
+          "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
           "Content-Type": "application/json",
         },
 
@@ -82,7 +82,7 @@ const Carrito = () => {
       });
 
       const result = await response;
-      console.log(result)
+      console.log(compraPrevia)
       
 
       if (result.ok) {
