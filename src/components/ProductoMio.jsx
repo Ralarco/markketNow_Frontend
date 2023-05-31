@@ -1,13 +1,10 @@
 import styled from 'styled-components'
 import React from 'react'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link, useNavigate } from "react-router-dom"
 import { useContext } from 'react';
-import ContextCarrito from '../contextCarrito';
 import ContextProductos from '../contextProductos';
-import ContextUser from '../contextUsuario';
 
 const Info = styled.div`
   width: 100%;

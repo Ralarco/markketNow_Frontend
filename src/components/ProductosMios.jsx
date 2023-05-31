@@ -24,9 +24,8 @@ const Titulo = styled.h1`
 
 const ProductosMios = () => {
 
-  /*const {productos, setProductos} = useContext(ContextProductos);*/
   const [productosmios, setProductosmios] = useState([])
-  const {usuario, setUsuario} = useContext(ContextUser)
+  const { usuario } = useContext(ContextUser)
   
 
   const traerProductosmios = async () => {
@@ -35,17 +34,17 @@ const ProductosMios = () => {
     
 
     const response = await fetch(`https://marketnow-backend2.onrender.com/productos/${datos}`, {
-      mode: 'no-cors',
       method: "GET", // or 'PUT'
       headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
+        "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
+        "Content-Type": "application/json",
       },
     });
-    console.log(response)
+    
     
 
     const resultado = await response.json();
+    console.log(resultado)
     setProductosmios(resultado)
   }
 
