@@ -30,8 +30,9 @@ const MisComprasComponent = () => {
     const response = await fetch(`https://marketnow-backend2.onrender.com/compras/${datos}`, {
       method: "GET", // or 'PUT'
       headers: {
-        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
+        "Content-Type": "application/json",
+        
       },
     });
 

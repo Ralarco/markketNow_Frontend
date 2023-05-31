@@ -74,17 +74,16 @@ const Carrito = () => {
 
     try {
       const response = await fetch("https://marketnow-backend2.onrender.com/compras", {
-        mode: 'no-cors',
         method: "POST", // or 'PUT'
         headers: {
-          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "https://marketnow.onrender.com",
+          "Content-Type": "application/json",
         },
 
-        body: JSON.stringify(compraPrevia),
+        /* body: JSON.stringify(compraPrevia), */
       });
 
-      const result = await response;
+      const result = response;
 
       if (result.ok) {
         alert("Su compra ha sido registrada éxitosamente 😀");
