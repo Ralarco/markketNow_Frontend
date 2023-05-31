@@ -73,7 +73,7 @@ const Carrito = () => {
       const response = await fetch("https://marketnow-backend2.onrender.com/compras", {
         method: "POST", // or 'PUT'
         headers: {
-          "Access-Control-Allow-Origin": "https://marketnow.onrender.com/carrito",
+          "Access-Control-Allow-Origin": "https://marketnow.onrender.com/",
           "Content-Type": "application/json",
         },
 
@@ -82,7 +82,7 @@ const Carrito = () => {
       });
 
       const result = response;
-      console.log(result)
+      console.log(response)
       
 
       if (result.ok) {
