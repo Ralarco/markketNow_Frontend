@@ -23,7 +23,6 @@ const MisComprasComponent = () => {
   });
 
   const datos = usuario[0].usuarioid
-  console.log(usuario)
 
   const traerCompras = async () => {
     const response = await fetch(`https://marketnow-backend2.onrender.com/compras/${datos}`, {
