@@ -66,7 +66,7 @@ const Carrito = () => {
       usuarioid: usuario[0].usuarioid,
       fecha_compra: hoy.toLocaleDateString(),
       total: total,
-      productos: carritoJson,
+      productos: carrito,
     };
 
     try {
@@ -77,7 +77,7 @@ const Carrito = () => {
           "Content-Type": "application/json",
         },
 
-        body: compraPrevia/* JSON.stringify(compraPrevia) */,
+        body: JSON.stringify(compraPrevia),
         
       });
 
