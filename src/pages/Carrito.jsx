@@ -63,13 +63,13 @@ const Carrito = () => {
 
     const tiempoTranscurrido = Date.now();
     const hoy = new Date(tiempoTranscurrido);
-    const carritoJson = JSON.stringify(carrito);
+    /* const carritoJson = JSON.stringify(carrito); */
 
     const compraPrevia = {
       usuarioid: usuario[0].usuarioid,
       fecha_compra: hoy.toLocaleDateString(),
       total: total,
-      productos: carrito,
+      productos: JSON.stringify(carrito),
     };
 
     try {
@@ -80,17 +80,18 @@ const Carrito = () => {
           "Content-Type": "application/json",
         },
 
-        /* body: JSON.stringify(compraPrevia), */
+        body: JSON.stringify(compraPrevia),
+        console.log(body)
       });
 
       const result = response;
-      console.log(result)
+      
 
       if (result.ok) {
         alert("Su compra ha sido registrada éxitosamente 😀");
         navigate(`/compras`)
-        /* setCarrito([])
-        carrito.length = 0; */
+        setCarrito([])
+        /* carrito.length = 0; */
       }
     } catch (error) {
       console.error("Error:", error);
