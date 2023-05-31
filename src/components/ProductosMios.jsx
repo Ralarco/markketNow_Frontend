@@ -35,6 +35,7 @@ const ProductosMios = () => {
     
 
     const response = await fetch(`https://marketnow-backend2.onrender.com/productos/${datos}`, {
+      mode: 'no-cors',
       method: "GET", // or 'PUT'
       headers: {
       "Content-Type": "application/json",
