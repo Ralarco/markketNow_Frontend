@@ -80,10 +80,11 @@ const Carrito = () => {
           "Content-Type": "application/json",
         },
 
-        /* body: JSON.stringify(compraPrevia), */
+        body: JSON.stringify(compraPrevia),
       });
 
       const result = response;
+      console.log(result)
 
       if (result.ok) {
         alert("Su compra ha sido registrada éxitosamente 😀");
