@@ -81,9 +81,9 @@ const Carrito = () => {
         },
 
         body: JSON.stringify(compraPrevia),
-        console.log(body)
+        
       });
-
+      console.log(compraPrevia)
       const result = response;
       
 
