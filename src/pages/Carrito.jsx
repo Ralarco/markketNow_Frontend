@@ -45,8 +45,8 @@ const FooterContainer = styled.div`
 
 const Carrito = () => {
   
-  const { carrito, setCarrito, total } = useContext(ContextCarrito);
-  const {usuario, setUsuario} = useContext(ContextUser)
+  const { carrito, total } = useContext(ContextCarrito);
+  const { usuario } = useContext(ContextUser)
   const navigate = useNavigate();
   const volver = () => navigate(`/tienda`);
   const precioTotal = parseInt(total);
@@ -73,7 +73,7 @@ const Carrito = () => {
       const response = await fetch("https://marketnow-backend2.onrender.com/compras", {
         method: "POST", // or 'PUT'
         headers: {
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin": "https://marketnow-backend2.onrender.com",
           "Content-Type": "application/json",
         },
 
