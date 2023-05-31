@@ -80,7 +80,7 @@ const Carrito = () => {
           "Content-Type": "application/json",
         },
 
-        body: JSON.stringify(compraPrevia),
+        body: compraPrevia,
       });
 
       const result = response;
