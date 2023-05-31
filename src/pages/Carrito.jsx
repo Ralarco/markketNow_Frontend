@@ -66,7 +66,7 @@ const Carrito = () => {
       usuarioid: usuario[0].usuarioid,
       fecha_compra: hoy.toLocaleDateString(),
       total: total,
-      productos: carrito,
+      productos: carritoJson,
     };
 
     try {
@@ -81,7 +81,7 @@ const Carrito = () => {
         
       });
 
-      const result = response;
+      const result = await response.json();
       console.log(result)
       
 
